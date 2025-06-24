@@ -351,38 +351,6 @@ Result:
 
 Note: the first column is the new unique SURROGATE_KEY
 
-### Optional Step - Create a SEQUENCE
-
-```sql
-CREATE TABLE AIRLINES_with_SEQ (
- ID BIGINT,
- CODE STRING,
- DESCRIPTION STRING);
-
-INSERT INTO AIRLINES_with_SEQ (
-  ID, CODE, DESCRIPTION)
- SELECT
-  row_number() over(),
-  CODE,
-  DESCRIPTION
- from
-  AIRLINES_CSV;
-
-select
- *
-from
- AIRLINES_with_SEQ
-limit 3;
-```
-
-Result:
-
-|id	| code |	 description|
-| :- | :- | :- |
-|1 |02Q |Titan Airways |
-|2 |04Q |Tradewind Aviation |
-|3 |05Q |"Comlux Aviation |
-
 -----
 ## Lab 4 - Materialized View
 Reminder: use your own “db\_user001”..”db\_user020” database.
