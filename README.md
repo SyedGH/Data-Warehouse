@@ -108,7 +108,7 @@ QUERY: Airline Delay Aggregate Metrics by Airplane.
 
 DESCRIPTION: Customer Experience Reporting showing airplanes that have the highest average delays, causing the worst customer experience.
 
-*Do all these steps in the* **“db\_user001”..”db\_user020”** *unless otherwise noted.*
+*Do all these steps in the* **“db\_user001”..”db\_user050”** *unless otherwise noted.*
 
 ```sql
 SELECT
@@ -176,9 +176,17 @@ drop table if exists planes_orc;
 create table planes_orc as select * from planes_csv;
 
 drop table if exists flights_orc;
-create table flights_orc partitioned by (year) as
-select year, month, dayofmonth, dayofweek, deptime, crsdeptime, arrtime, crsarrtime, uniquecarrier, flightnum, tailnum, actualelapsedtime, crselapsedtime, airtime, arrdelay, depdelay, origin, dest, distance, taxiin, taxiout, cancelled, cancellationcode, diverted, carrierdelay, weatherdelay, nasdelay, securitydelay, lateaircraftdelay
-from flights_csv;
+CREATE TABLE flights_orc
+PARTITIONED BY (year)
+AS
+SELECT 
+  month, dayofmonth, dayofweek, deptime, crsdeptime,
+  arrtime, crsarrtime, uniquecarrier, flightnum, tailnum,
+  actualelapsedtime, crselapsedtime, airtime, arrdelay, depdelay,
+  origin, dest, distance, taxiin, taxiout, cancelled, cancellationcode,
+  diverted, carrierdelay, weatherdelay, nasdelay, securitydelay, lateaircraftdelay,
+  year  -- 👈 must be last
+FROM flights_csv;
 
 ```
 
