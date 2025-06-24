@@ -163,7 +163,7 @@ This can be inserted for documentation purposes.
 
 Run “CREATE TABLE AS SELECT” queries to create full ACID ORC type of the tables. This creates curated versions of the data which are optimal for BI usage.
 
-*Do all these steps in the* **“db\_user001”..”db\_user020”** *unless otherwise noted.*
+*Do all these steps in the dedicated Database * **“db\_user001”..”db\_user050”** *unless otherwise noted.*
 
 ```sql
 drop table if exists airlines_orc;
