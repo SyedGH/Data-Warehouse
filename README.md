@@ -310,47 +310,6 @@ ORDER BY
    dayofmonth ASC;
 ```
 
-
-
-### Defaults - Surrogate_key & Sequence
-
-Surrogate keys are easy & distributable & fast, but not in sequence, has gaps.
-
-```sql
-DROP TABLE IF EXISTS airlines_with_surrogate_key;
-
-CREATE TABLE
-  airlines_with_surrogate_key (
-    ID BIGINT DEFAULT SURROGATE_KEY(),
-    CODE STRING,
-    DESCRIPTION STRING);
-
-INSERT INTO airlines_with_surrogate_key (CODE, DESCRIPTION)
-SELECT
-  code,
-  description
-FROM
-  airlines_csv;
-
-SELECT
- *
-FROM  
- airlines_with_surrogate_key
-ORDER BY
- id
-LIMIT 3;
-```
-
-Result:
-
-|id	| code |	 description|
-| :- | :- | :- |
-|1099511627776 |02Q |Titan Airways |
-|1099511627777 |04Q |Tradewind Aviation |
-|1099511627778 |05Q |"Comlux Aviation |
-
-Note: the first column is the new unique SURROGATE_KEY
-
 -----
 ## Lab 4 - Materialized View
 Reminder: use your own “db\_user001”..”db\_user020” database.
