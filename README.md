@@ -33,7 +33,7 @@ select current_database();
 -----
 ## Lab 2 - External Tables
 
-Run DDL to create four external tables on the CSV data files, which are already in cloud object storage.
+Run DDL to create four external tables on the CSV data files, which are already in cloud object storage. (While running the below query, you would need the AWS S3 bucket path - ASK YOUR TRAINER)
 
 ```sql
 drop table if exists flights_csv;
